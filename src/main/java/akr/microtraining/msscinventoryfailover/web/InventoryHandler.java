@@ -1,6 +1,8 @@
 package akr.microtraining.msscinventoryfailover.web;
 
+import java.awt.List;
 import java.time.OffsetDateTime;
+import java.util.Arrays;
 import java.util.UUID;
 
 import org.springframework.http.MediaType;
@@ -16,12 +18,13 @@ public class InventoryHandler {
     public Mono<ServerResponse> listInventory(ServerRequest request){
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_STREAM_JSON)
-                .body(Mono.just(BeerInventoryDto.builder()
-                    .id(UUID.randomUUID())
-                    .beerId(UUID.fromString("00000000-0000-0000-0000-000000000000"))
-                    .quantityOnHand(999)
-                    .createdDate(OffsetDateTime.now())
-                    .lastModifiedDate(OffsetDateTime.now())
-                        .build()), BeerInventoryDto.class);
+                .body(Mono.just(Arrays.asList(
+                	BeerInventoryDto.builder()
+	                    .id(UUID.randomUUID())
+	                    .beerId(UUID.fromString("00000000-0000-0000-0000-000000000000"))
+	                    .quantityOnHand(999)
+	                    .createdDate(OffsetDateTime.now())
+	                    .lastModifiedDate(OffsetDateTime.now())
+	                        .build())), List.class );
     }
 }
